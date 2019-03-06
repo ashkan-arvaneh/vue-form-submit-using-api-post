@@ -44,12 +44,6 @@ export default {
         pAccName: "MicDevtest",
         pPartner: "MicDevtest",
         access_token: "c13766577aa629d1aa9cb0168882b216"
-      },
-      axiosConfig: {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
       }
     };
   },
@@ -57,15 +51,14 @@ export default {
     validateBeforeSubmit() {
       this.$validator.validateAll().then(result => {
         if (result) {
-          // eslint-disable-next-line
           const payload = qs.stringify(this.formFields);
-          console.log(payload);
           axios
             .post(
-              "${'https://cors-anywhere.herokuapp.com/'}http://mic-leads.dev-test.makeiteasy.com/api/v1/create",
+              "http://mic-leads.dev-test.makeiteasy.com/api/v1/create",
               payload
             )
             .then(result => {
+              console.log("hi");
               console.log(result.data);
             })
             .catch(error => console.log(error));
@@ -73,8 +66,6 @@ export default {
           alert("Form Submitted!");
           return;
         }
-
-        alert("Correct them errors!");
       });
     },
     setData(fieldName, event) {
