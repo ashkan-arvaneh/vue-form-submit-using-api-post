@@ -2,7 +2,7 @@
   <div class="contact-form">
     <div class="card card-body">
       <h3 class="text-center mb-4">Request a callback</h3>
-      <form>
+      <form @submit.prevent="validateBeforeSubmit">
         <div class="form-group" v-for="form in contactFormData" :key="form.id">
           <label for="fullName">{{ form.name }}</label>
           <input
@@ -30,8 +30,57 @@
 </template>
 
 <script>
+import contactFormData from "../assets/data/contactFormData.json";
+import axios from "axios";
+const qs = require("qs");
+
 export default {
-  name: "ContactForm"
+  name: "ContactForm",
+  data() {
+    return {
+      contactFormData,
+      formFields: {
+        pGUID: "CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB",
+        pAccName: "MicDevtest",
+        pPartner: "MicDevtest",
+        access_token: "c13766577aa629d1aa9cb0168882b216"
+      },
+      axiosConfig: {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        }
+      }
+    };
+  },
+  methods: {
+    validateBeforeSubmit() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          // eslint-disable-next-line
+          const payload = qs.stringify(this.formFields);
+          console.log(payload);
+          axios
+            .post(
+              "${'https://cors-anywhere.herokuapp.com/'}http://mic-leads.dev-test.makeiteasy.com/api/v1/create",
+              payload
+            )
+            .then(result => {
+              console.log(result.data);
+            })
+            .catch(error => console.log(error));
+
+          alert("Form Submitted!");
+          return;
+        }
+
+        alert("Correct them errors!");
+      });
+    },
+    setData(fieldName, event) {
+      this.$set(this.formFields, fieldName, event.target.value);
+    }
+  }
 };
 </script>
 
