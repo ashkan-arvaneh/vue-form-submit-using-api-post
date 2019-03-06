@@ -76,17 +76,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+ul {
+  padding-left: 10px;
+}
 li {
   display: block;
 }
 .dirty {
   border-color: #5a5;
   background: #efe;
-  &.invalid {
-    color: red;
-    border-color: red;
-    background: #f998983d;
-  }
+}
+.invalid {
+  color: red;
+  border-color: red;
+  background: #f998983d;
 }
 .error-message {
   color: red;
