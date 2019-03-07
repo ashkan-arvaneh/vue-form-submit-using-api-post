@@ -14,18 +14,16 @@
             :aria-describedby="form.id"
             v-validate.continues="form.validation"
             @input="setData(form.id, $event)"
-          />
+          >
           <ul>
             <li
               v-for="error in errors.collect(form.name)"
               :key="error"
               :class="{ 'error-message': error }"
-            >
-              {{ error }}
-            </li>
+            >{{ error }}</li>
           </ul>
         </div>
-        <input class="btn btn-lg btn-primary" value="Call Me" type="submit" />
+        <button class="btn btn-lg btn-primary" type="submit">Call Me</button>
       </form>
     </div>
   </div>
