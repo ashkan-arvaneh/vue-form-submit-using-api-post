@@ -21,7 +21,7 @@ const contactFormData = [
     name: "Telephone number",
     id: "telephone_number",
     type: "text",
-    validation: "required|numeric|max:13"
+    validation: "required|numeric|min:11|max:11"
   }
 ];
 

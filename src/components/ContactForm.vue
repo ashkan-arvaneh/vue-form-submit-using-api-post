@@ -39,10 +39,10 @@ export default {
     return {
       contactFormData,
       formFields: {
+        access_token: "c13766577aa629d1aa9cb0168882b216",
         pGUID: "CFFBF53F-6D89-4B5B-8B36-67A97F18EDEB",
         pAccName: "MicDevtest",
-        pPartner: "MicDevtest",
-        access_token: "c13766577aa629d1aa9cb0168882b216"
+        pPartner: "MicDevtest"
       }
     };
   },
@@ -50,20 +50,23 @@ export default {
     validateBeforeSubmit() {
       this.$validator.validateAll().then(result => {
         if (result) {
-          const payload = qs.stringify(this.formFields);
-          axios
-            .post(
-              "http://mic-leads.dev-test.makeiteasy.com/api/v1/create",
-              payload
-            )
-            .then(result => {
-              console.log("hi");
-              console.log(result.data);
+          const options = {
+            method: "POST",
+            withCredential: false,
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            params: this.formFields,
+            data: "",
+            url: "http://mic-leads.dev-test.makeiteasy.com/api/v1/create"
+          };
+          axios(options)
+            .then(() => {
+              //console.log(response.status); // return 201
             })
-            .catch(error => console.log(error));
-
-          alert("Form Submitted!");
-          return;
+            .catch(err => {
+              console.log(err);
+            });
         }
       });
     },
