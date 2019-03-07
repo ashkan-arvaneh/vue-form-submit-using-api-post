@@ -32,7 +32,6 @@
 <script>
 import contactFormData from "@/assets/data/contactFormData.js";
 import axios from "axios";
-const qs = require("qs");
 
 export default {
   name: "ContactForm",
