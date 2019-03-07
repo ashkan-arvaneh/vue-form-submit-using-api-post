@@ -14,23 +14,25 @@
             :aria-describedby="form.id"
             v-validate.continues="form.validation"
             @input="setData(form.id, $event)"
-          >
+          />
           <ul>
             <li
               v-for="error in errors.collect(form.name)"
               :key="error"
               :class="{ 'error-message': error }"
-            >{{ error }}</li>
+            >
+              {{ error }}
+            </li>
           </ul>
         </div>
-        <input class="btn btn-lg btn-primary" value="Call Me" type="submit">
+        <input class="btn btn-lg btn-primary" value="Call Me" type="submit" />
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import contactFormData from "../assets/data/contactFormData.json";
+import contactFormData from "@/assets/data/contactFormData.js";
 import axios from "axios";
 const qs = require("qs");
 
