@@ -1,14 +1,14 @@
-import Vue from "vue";
-import { mount } from "@vue/test-utils";
+import { createLocalVue, mount } from "@vue/test-utils";
 import VeeValidate from "vee-validate";
 import ContactForm from "@/components/ContactForm";
 
-Vue.use(VeeValidate, {
+const localVue = createLocalVue();
+localVue.use(VeeValidate, {
   classes: true
 });
 
 describe("ContactForm", () => {
-  const wrapper = mount(ContactForm);
+  const wrapper = mount(ContactForm, { localVue });
   it("renders the correct markup", () => {
     expect(wrapper.html()).toContain(
       '<h3 class="text-center mb-4">Request a callback</h3>'
