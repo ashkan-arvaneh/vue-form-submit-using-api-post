@@ -40,6 +40,22 @@ npm run lint
 npm run test:unit
 ```
 
+---
+
+## Folder Structure
+
+```
+WebContent
+|
+|-- src -> Front-End source folder
+    |-- assets
+    |   |-- data -> includes static data used in the form component
+    |   |-- images -> images are copied over by webpack to a dist folder for production
+    |-- components -> Contains Vue components
+    |-- pages -> Contains pages that would include vue components
+    |-- tests -> Contains test files
+```
+
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
